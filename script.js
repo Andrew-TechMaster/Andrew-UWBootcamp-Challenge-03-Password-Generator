@@ -28,17 +28,27 @@ function generatePassword() {
   // special characters
   const specialChars = ["!", "@", "#", "$", "%", "&", "*", "?"];
 
+  // empty array for the generated password
+  const result = [];
+
   // <---------- Prompt the message and store the value for the length of the generatred password ----------> 
+  let userInput = prompt("Enter disired password length (between 8~128 characters): ");
 
   // <---------- Use window confirm() to check a series of criteria ----------> 
+  let includeUpperCase = confirm("Include uppercase letters?");
+  let includeLowerCase = confirm("Include lowercase letters?");
+  let includeNumeric = confirm("Inculde numeric values?");
+  let includeSpecial = confirm("Include specail characters?");
 
   // <---------- Condition check and actual implementation: condition check, random output, etc. ----------> 
+
 
   // <---------- Finally, return the result ----------> 
   console.log(upperCaseChars);
   console.log(lowerCaseChars);
   console.log(numArray);
   console.log(specialChars);
+  console.log(`${userInput}, ${includeUpperCase}, ${includeLowerCase}, ${includeNumeric}, ${includeSpecial}`);
 }
 
 
@@ -53,4 +63,5 @@ function writePassword() {
 // {========= Add event listener to generate button =========} 
 generateBtn.addEventListener("click", writePassword);  // call back writePassword method
 
+generatePassword();  // for testing, later will delete
 
