@@ -40,22 +40,36 @@ function generatePassword() {
 
     if (isNaN(lengthOfPassword)) {
       alert("Invalid input, please give a number");
-    } else if (lengthOfPassword < 8 || lengthOfPassword > 126) {
-      if (lengthOfPassword < 8 ) {
+    } else if (lengthOfPassword < 8 || lengthOfPassword > 128) {
+      if (lengthOfPassword < 8) {
         alert("Your password is too short");
       } else {
-        elert("Your password is too long");
+        alert("Your password is too long");
       }
-    } else { // if the inpu is valid, jump out of the while loop
+    } else { // if the input is valid, jump out of the while loop
       break;
-    }
+    };
   };
 
   // <---------- Use window confirm() to check a series of criteria ----------> 
-  let includeUpperCase = confirm("Include uppercase letters?");
-  let includeLowerCase = confirm("Include lowercase letters?");
-  let includeNumeric = confirm("Inculde numeric values?");
-  let includeSpecial = confirm("Include specail characters?");
+  // let includeUpperCase = confirm("Include uppercase letters?");
+  // let includeLowerCase = confirm("Include lowercase letters?");
+  // let includeNumeric = confirm("Inculde numeric values?");
+  // let includeSpecial = confirm("Include specail characters?");
+
+  while (true) {
+    var includeUpperCase = confirm("Include uppercase letters?");
+    var includeLowerCase = confirm("Include lowercase letters?");
+    var includeNumeric = confirm("Inculde numeric values?");
+    var includeSpecial = confirm("Include specail characters?");
+
+    if (!includeUpperCase && !includeLowerCase && !includeNumeric && !includeSpecial) {
+      alert("Please include at least one of the options. Choose again: ");
+    } else {
+      break;
+    };
+  };
+
 
   // <---------- Condition check and actual implementation: condition check, random output, etc. ----------> 
   validArrayObj.push(includeUpperCase ? upperCaseChars : []);
@@ -68,7 +82,7 @@ function generatePassword() {
     let selectedItemIndex = randomSelect(validArrayObj[selectedArrayIndex].length);
     let selectedValue = validArrayObj[selectedArrayIndex][selectedItemIndex];
     
-    // check if the value is undefined or not, if it's undefined we don't add it to the result
+    // check if the value is undefined or not, if it's undefine then we don't add it to the result
     if (selectedValue) {
       result.push(selectedValue);
     } 
