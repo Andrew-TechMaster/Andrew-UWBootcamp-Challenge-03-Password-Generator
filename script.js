@@ -33,8 +33,23 @@ function generatePassword() {
   const result = [];
 
   // <---------- Prompt the message and store the value for the length of the generatred password ----------> 
-  let userInput = prompt("Enter disired password length (between 8~128 characters): ");
-  let lengthOfPassword = parseInt(userInput);
+  while (true) {
+    // use var keyword to declare, or it cannot be accessed outside the while loop
+    var userInput = prompt("Enter disired password length (between 8~128 characters): ");
+    var lengthOfPassword = parseInt(userInput);
+
+    if (isNaN(lengthOfPassword)) {
+      alert("Invalid input, please give a number");
+    } else if (lengthOfPassword < 8 || lengthOfPassword > 126) {
+      if (lengthOfPassword < 8 ) {
+        alert("Your password is too short");
+      } else {
+        elert("Your password is too long");
+      }
+    } else { // if the inpu is valid, jump out of the while loop
+      break;
+    }
+  };
 
   // <---------- Use window confirm() to check a series of criteria ----------> 
   let includeUpperCase = confirm("Include uppercase letters?");
@@ -73,7 +88,7 @@ function generatePassword() {
   // var temp = result.join('');
   // console.log(temp)
 
-  return result.join('');  // conver an array to a string
+  return result.join('');  // convert an array to a string
 }
 
 function randomSelect (itemLength) {
