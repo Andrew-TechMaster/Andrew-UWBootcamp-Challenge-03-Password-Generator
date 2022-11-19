@@ -1,15 +1,7 @@
-// {========= Assignment Code ==========} 
+// {========= Select Btn ==========} 
 var generateBtn = document.querySelector("#generate");
 
-// {========= Notes ==========} 
-// This page says
-// Enter disired password length (between 8~128 characters): 
-// Include lowercase letters?
-// Include uppercase letters?
-// Inculde numeric values?
-// Include specail characters?
-
-// {========= This function will generate password ==========} 
+// {========= This function will generate the password ==========} 
 function generatePassword() {
   // <---------- Declare arrarys for the password value: lowerCase, upperCase, num, spcial, empty(for the result) ----------> 
   // upper case array
@@ -28,43 +20,40 @@ function generatePassword() {
   // special characters
   const specialChars = ["!", "@", "#", "$", "%", "&", "*", "?"];
 
-  // empty array for the temp array & generated password
+  // empty array for the generated password and placeholder for the selected requirements
   var validArrayObj = [];
   const result = [];
 
   // <---------- Prompt the message and store the value for the length of the generatred password ----------> 
+  // handle invalid input & edge-case 
   while (true) {
     // use var keyword to declare, or it cannot be accessed outside the while loop
     var userInput = prompt("Enter disired password length (between 8~128 characters): ");
     var lengthOfPassword = parseInt(userInput);
 
     if (isNaN(lengthOfPassword)) {
-      alert("Invalid input, please give a number");
-    } else if (lengthOfPassword < 8 || lengthOfPassword > 128) {
-      if (lengthOfPassword < 8) {
-        alert("Your password is too short");
+      alert("🔢 Invalid input, the input should be numbers between 8~128 🔢");
+    } else if (lengthOfPassword <= 8 || lengthOfPassword >= 128) {
+      if (lengthOfPassword <= 8) {
+        alert("🤏 Your password is too short 🤏");
       } else {
-        alert("Your password is too long");
+        alert("🐷 Your password is too long 🐷");
       }
-    } else { // if the input is valid, jump out of the while loop
-      break;
+    } else {
+      break;  // if the input is valid, jump out of the while loop
     };
   };
 
-  // <---------- Use window confirm() to check a series of criteria ----------> 
-  // let includeUpperCase = confirm("Include uppercase letters?");
-  // let includeLowerCase = confirm("Include lowercase letters?");
-  // let includeNumeric = confirm("Inculde numeric values?");
-  // let includeSpecial = confirm("Include specail characters?");
-
+  // <---------- Use window confirm() to check a series of criteria ---------->   
+  // handle edge-case while user select nothing 
   while (true) {
-    var includeUpperCase = confirm("Include uppercase letters?");
-    var includeLowerCase = confirm("Include lowercase letters?");
-    var includeNumeric = confirm("Inculde numeric values?");
-    var includeSpecial = confirm("Include specail characters?");
+    var includeUpperCase = confirm("🔠 Include uppercase letters? 🔠");
+    var includeLowerCase = confirm("🔡 Include lowercase letters? 🔡");
+    var includeNumeric = confirm("🔢 Inculde numeric values? 🔢");
+    var includeSpecial = confirm("⁉️ Include specail characters? ⁉️");
 
     if (!includeUpperCase && !includeLowerCase && !includeNumeric && !includeSpecial) {
-      alert("Please include at least one of the options. Choose again: ");
+      alert("🍎 Please include at least one of the options. Choose again: 🍎");
     } else {
       break;
     };
@@ -81,31 +70,18 @@ function generatePassword() {
     let selectedArrayIndex = randomSelect(validArrayObj.length);
     let selectedItemIndex = randomSelect(validArrayObj[selectedArrayIndex].length);
     let selectedValue = validArrayObj[selectedArrayIndex][selectedItemIndex];
-    
+
     // check if the value is undefined or not, if it's undefine then we don't add it to the result
     if (selectedValue) {
       result.push(selectedValue);
-    } 
+    }
   };
 
   // <---------- Finally, return the result ----------> 
-  // console.log(upperCaseChars);
-  // console.log(lowerCaseChars);
-  // console.log(numArray);
-  // console.log(specialChars);
-  // console.log("---------------------------");
-  // console.log(`${userInput}, ${includeUpperCase}, ${includeLowerCase}, ${includeNumeric}, ${includeSpecial}`);
-  // console.log( `${validArrayObj} and the length is {${validArrayObj.length}}`);
-  // console.log(validArrayObj);
-  // console.log(validArrayObj[0]);
-  // console.log("---------------------------");
-  // var temp = result.join('');
-  // console.log(temp)
-
   return result.join('');  // convert an array to a string
 }
 
-function randomSelect (itemLength) {
+function randomSelect(itemLength) {
   return Math.floor(Math.random() * itemLength);
 }
 
@@ -120,5 +96,37 @@ function writePassword() {
 // {========= Add event listener to generate button =========} 
 generateBtn.addEventListener("click", writePassword);  // call back writePassword method
 
+
+
+
+
+// {========= Notes ==========} 
+// This page says
+// Enter disired password length (between 8~128 characters): 
+// Include lowercase letters?
+// Include uppercase letters?
+// Inculde numeric values?
+// Include specail characters?
+
+
+// {========= Unused Code & Testing Code =========} 
+// function generatePassword(){
+// let includeUpperCase = confirm("Include uppercase letters?");
+// let includeLowerCase = confirm("Include lowercase letters?");
+// let includeNumeric = confirm("Inculde numeric values?");
+// let includeSpecial = confirm("Include specail characters?");
+//   console.log(upperCaseChars);
+//   console.log(lowerCaseChars);
+//   console.log(numArray);
+//   console.log(specialChars);
+//   console.log("---------------------------");
+//   console.log(`${userInput}, ${includeUpperCase}, ${includeLowerCase}, ${includeNumeric}, ${includeSpecial}`);
+//   console.log( `${validArrayObj} and the length is {${validArrayObj.length}}`);
+//   console.log(validArrayObj);
+//   console.log(validArrayObj[0]);
+//   console.log("---------------------------");
+//   var temp = result.join('');
+//   console.log(temp)
+// }
 // generatePassword();  // for testing, later will delete
 
