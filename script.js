@@ -28,11 +28,13 @@ function generatePassword() {
   // special characters
   const specialChars = ["!", "@", "#", "$", "%", "&", "*", "?"];
 
-  // empty array for the generated password
+  // empty array for the temp array & generated password
+  var validArrayObj = [];
   const result = [];
 
   // <---------- Prompt the message and store the value for the length of the generatred password ----------> 
   let userInput = prompt("Enter disired password length (between 8~128 characters): ");
+  let lengthOfPassword = parseInt(userInput);
 
   // <---------- Use window confirm() to check a series of criteria ----------> 
   let includeUpperCase = confirm("Include uppercase letters?");
@@ -41,16 +43,61 @@ function generatePassword() {
   let includeSpecial = confirm("Include specail characters?");
 
   // <---------- Condition check and actual implementation: condition check, random output, etc. ----------> 
+  // switch (true) {
+  //   case includeUpperCase:
+  //     console.log("indside");
+  //     validCart.push(upperCaseChars);
+  //     break;
+  //   case includeLowerCase:
+  //     console.log("indside 2");
+  //     validCart.push(lowerCaseChars);
+  //     break;
+  //   case includeNumeric:
+  //     validCart.push(numArray);
+  //     break;
+  //   case includeSpecial:
+  //     validCart.push(specialChars);
+  //     break;
+  //   default: // do nothing
+  //     break;
+  // }
+  
+  // if (includeUpperCase) {
+  //   validCart.push(upperCaseChars);
+  // }
 
+  validArrayObj.push(includeUpperCase ? upperCaseChars : []);
+  validArrayObj.push(includeLowerCase ? lowerCaseChars : []);
+  validArrayObj.push(includeNumeric ? numArray : []);
+  validArrayObj.push(includeSpecial ? specialChars : []);
+
+  while (result.length < lengthOfPassword) {
+    let selectedArrayIndex = randomSelect(validArrayObj.length);
+    let selectedItemIndex = randomSelect(validArrayObj[selectedArrayIndex].length);
+    let selectedValue = validArrayObj[selectedArrayIndex][selectedItemIndex];
+    
+    if (selectedValue) {
+      result.push(selectedValue);
+    } 
+  };
 
   // <---------- Finally, return the result ----------> 
   console.log(upperCaseChars);
   console.log(lowerCaseChars);
   console.log(numArray);
   console.log(specialChars);
+  console.log("---------------------------");
   console.log(`${userInput}, ${includeUpperCase}, ${includeLowerCase}, ${includeNumeric}, ${includeSpecial}`);
+  console.log( `${validArrayObj} and the length is {${validArrayObj.length}}`);
+  console.log(validArrayObj);
+  console.log(validArrayObj[0]);
+  console.log("---------------------------");
+  console.log(result);
 }
 
+function randomSelect (itemLength) {
+  return Math.floor(Math.random() * itemLength);
+}
 
 // {========= Write password to the #password input =========} 
 function writePassword() {
