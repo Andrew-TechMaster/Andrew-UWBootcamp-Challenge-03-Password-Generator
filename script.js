@@ -43,29 +43,6 @@ function generatePassword() {
   let includeSpecial = confirm("Include specail characters?");
 
   // <---------- Condition check and actual implementation: condition check, random output, etc. ----------> 
-  // switch (true) {
-  //   case includeUpperCase:
-  //     console.log("indside");
-  //     validCart.push(upperCaseChars);
-  //     break;
-  //   case includeLowerCase:
-  //     console.log("indside 2");
-  //     validCart.push(lowerCaseChars);
-  //     break;
-  //   case includeNumeric:
-  //     validCart.push(numArray);
-  //     break;
-  //   case includeSpecial:
-  //     validCart.push(specialChars);
-  //     break;
-  //   default: // do nothing
-  //     break;
-  // }
-  
-  // if (includeUpperCase) {
-  //   validCart.push(upperCaseChars);
-  // }
-
   validArrayObj.push(includeUpperCase ? upperCaseChars : []);
   validArrayObj.push(includeLowerCase ? lowerCaseChars : []);
   validArrayObj.push(includeNumeric ? numArray : []);
@@ -76,23 +53,27 @@ function generatePassword() {
     let selectedItemIndex = randomSelect(validArrayObj[selectedArrayIndex].length);
     let selectedValue = validArrayObj[selectedArrayIndex][selectedItemIndex];
     
+    // check if the value is undefined or not, if it's undefined we don't add it to the result
     if (selectedValue) {
       result.push(selectedValue);
     } 
   };
 
   // <---------- Finally, return the result ----------> 
-  console.log(upperCaseChars);
-  console.log(lowerCaseChars);
-  console.log(numArray);
-  console.log(specialChars);
-  console.log("---------------------------");
-  console.log(`${userInput}, ${includeUpperCase}, ${includeLowerCase}, ${includeNumeric}, ${includeSpecial}`);
-  console.log( `${validArrayObj} and the length is {${validArrayObj.length}}`);
-  console.log(validArrayObj);
-  console.log(validArrayObj[0]);
-  console.log("---------------------------");
-  console.log(result);
+  // console.log(upperCaseChars);
+  // console.log(lowerCaseChars);
+  // console.log(numArray);
+  // console.log(specialChars);
+  // console.log("---------------------------");
+  // console.log(`${userInput}, ${includeUpperCase}, ${includeLowerCase}, ${includeNumeric}, ${includeSpecial}`);
+  // console.log( `${validArrayObj} and the length is {${validArrayObj.length}}`);
+  // console.log(validArrayObj);
+  // console.log(validArrayObj[0]);
+  // console.log("---------------------------");
+  // var temp = result.join('');
+  // console.log(temp)
+
+  return result.join('');  // conver an array to a string
 }
 
 function randomSelect (itemLength) {
@@ -110,5 +91,5 @@ function writePassword() {
 // {========= Add event listener to generate button =========} 
 generateBtn.addEventListener("click", writePassword);  // call back writePassword method
 
-generatePassword();  // for testing, later will delete
+// generatePassword();  // for testing, later will delete
 
