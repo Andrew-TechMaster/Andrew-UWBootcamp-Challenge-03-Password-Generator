@@ -31,6 +31,11 @@ function generatePassword() {
     var userInput = prompt("Enter disired password length (between 8~128 characters): ");
     var lengthOfPassword = parseInt(userInput);
 
+    // If user pressed Cancel, immediately end function
+    if (userInput === null) {
+      return;
+    }
+
     if (isNaN(lengthOfPassword)) {
       alert("🔢 Invalid input, the input should be numbers between 8~128 🔢");
     } else if (lengthOfPassword <= 8 || lengthOfPassword >= 128) {
@@ -41,7 +46,7 @@ function generatePassword() {
       }
     } else {
       break;  // if the input is valid, jump out of the while loop
-    };
+    }
   };
 
   // <---------- Use window confirm() to check a series of criteria ---------->   
@@ -56,7 +61,7 @@ function generatePassword() {
       alert("🍎 Please include at least one of the options. Choose again: 🍎");
     } else {
       break;
-    };
+    }
   };
 
 
@@ -76,11 +81,12 @@ function generatePassword() {
       result.push(selectedValue);
     }
   };
-
+  
   // <---------- Finally, return the result ----------> 
   return result.join('');  // convert an array to a string
 }
 
+// {========= Call this function to random choose =========} 
 function randomSelect(itemLength) {
   return Math.floor(Math.random() * itemLength);
 }
@@ -89,6 +95,11 @@ function randomSelect(itemLength) {
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
+
+  // If users pressed cancel in the first step, not return "undefined" but the placeholder
+  if (password === undefined) {
+    return;
+  }
 
   passwordText.value = password;
 }
