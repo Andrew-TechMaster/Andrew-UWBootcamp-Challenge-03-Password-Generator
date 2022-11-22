@@ -18,7 +18,7 @@ function generatePassword() {
   }
 
   // special characters
-  const specialChars = ["!", "@", "#", "$", "%", "&", "*", "?"];
+  const specialChars = ["!", "@", "#", "$", "%", "&", "*", "?", "=", "-", "_", ":", ";", ""];
 
   // empty array for the generated password and placeholder for the selected requirements
   var validArrayObj = [];
@@ -64,7 +64,6 @@ function generatePassword() {
     }
   };
 
-
   // <---------- Condition check and actual implementation: condition check, random output, etc. ----------> 
   validArrayObj.push(includeUpperCase ? upperCaseChars : []);
   validArrayObj.push(includeLowerCase ? lowerCaseChars : []);
@@ -81,7 +80,10 @@ function generatePassword() {
       result.push(selectedValue);
     }
   };
-  
+
+  // <---------- Alert the chosen at last ----------> 
+  alert(`Your password will be ${lengthOfPassword} long. Uppercase: ${includeUpperCase}, Lowercase: ${includeLowerCase}, Number: ${includeNumeric}, & Special: ${includeSpecial}`);
+
   // <---------- Finally, return the result ----------> 
   return result.join('');  // convert an array to a string
 }
